@@ -128,4 +128,47 @@ for ($i=0; $i < 5; $i++) {
 	echo "Your number is $i ";
 }
 
+echo "<br>";
+
+// For-each loop ;
+
+$arr = array("banana" , "mango", "apples" , "gavava" , "bread" , "paneer");
+
+foreach($arr as $value){
+	echo "$value<br>";
+}
+
+echo "<br>";
+
+// Function in php ;
+
+$rohan = [23,34,5,6,23,43,4,54];
+
+function marks($markArr){
+  $sum = 0 ;
+  foreach($markArr as $value){
+  	$sum += $value;
+  }
+  return $sum;
+}
+
+$sumMark = marks($rohan);
+
+$harry = [23,34,34,54,56,56];
+$sumh = marks($harry);
+
+echo "your marks is $sumMark";
+echo "<br>";
+echo "Your marks is $sumh";
+
+echo "<br>";
+
+$d = date("d m y l");
+echo "Date is $d";
+echo "<br>";
+
+$da = date("h i s a");
+echo "The time is $da";
+
+
 ?>
