@@ -170,5 +170,29 @@ echo "<br>";
 $da = date("h i s a");
 echo "The time is $da";
 
+echo "<br>";
+
+$ram = array("ramprasad"=>"blue" , "jeet"=>"green" , "dwarika"=>"black");
+
+foreach($ram as $key=>$value){
+	echo "<br> favorite color of $key is $value ";
+}
+
+echo "<br>";
+// multidimensional Array ;
+
+$multiDim = array(
+	array(2,5,7,8),
+	array(5,7,8,6),
+	array(4,5,0,1));
+
+for ($i=0; $i <count($multiDim) ; $i++) { 
+	for ($j=0; $j <count($multiDim[$i]) ; $j++) {
+
+		echo $multiDim[$i][$j];
+
+	}
+	echo "  ";
+}
 
 ?>
