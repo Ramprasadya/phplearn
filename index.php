@@ -192,7 +192,7 @@ for ($i=0; $i <count($multiDim) ; $i++) {
 		echo $multiDim[$i][$j];
 
 	}
-	echo "  ";
+	echo " <br> ";
 }
 
 ?>
