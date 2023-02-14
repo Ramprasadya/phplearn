@@ -51,10 +51,45 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   $name = $_POST["name"];
   $email = $_POST["email"];
   $desc = $_POST["desc"];
-  echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+ 
+
+//Submitiing these data into database ;
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "contact";
+
+$sql = "INSERT INTO `contact` ( `name`, `email`, `description`) VALUES ('$name', '$email', '$desc')";
+
+$conn = mysqli_connect($servername , $username ,$password , $database);
+
+if(!$conn){
+  die("Unable to connect" .mysqli_connect_error());
+}else{
+  //echo "Connection complete";
+  //storing the data ;
+
+  $result = mysqli_query($conn , $sql);
+
+  if($result){
+     echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
   <strong>Sucess</strong> Your Entry has been saved successfully !.
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>';
+  }
+  else{
+     echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>Error</strong> Your entery has failed  !.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>';
+  }
+
+
+
+
+}
+
 
 
 }
