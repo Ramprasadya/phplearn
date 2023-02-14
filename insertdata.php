@@ -16,6 +16,7 @@ if (!$conn) {
 	echo "Connection complete";
 }
 
+echo "<br>";
 // using variable for saving the data ;
 
 $name = "Ronit";
@@ -25,7 +26,7 @@ $gender = "male";
 // inserting data into database ;
 
 
-$sql = "INSERT INTO   employee( name, age, gender) VALUES ( '$name', '$age', '$gender')";
+$sql = "INSERT INTO   employee( name, age, gender) VALUES( '$name', '$age', '$gender')";
 
 $result =mysqli_query($conn,$sql);
 

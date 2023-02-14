@@ -18,7 +18,7 @@ if (!$conn) {
 	echo "Connection is successfully complete ";
 }
 
-echo "<BR>";
+echo "<BR>"; 
 // creating table ;
 
 $sql = "CREATE TABLE `employee`( `srno` INT NOT NULL AUTO_INCREMENT PRIMARY KEY , `name` VARCHAR(11) NOT NULL , `age` INT(11) NOT NULL , `gender` VARCHAR(11) NOT NULL )";
