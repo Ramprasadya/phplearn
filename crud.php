@@ -79,8 +79,24 @@ if(!$conn){
   <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3"></textarea>
 </div>
   
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary">Add Note</button>
 </form>
+</div>
+
+<div class="container" >
+  <?php
+   
+   $sql = "SELECT * FROM `notes` ";
+
+   $result = mysqli_query($conn,$sql);
+
+   while($rows = mysqli_fetch_assoc($result)){
+
+    echo $rows["sno"] . " Title " .$rows["title"] . " Description " .$rows["description"];
+   }
+
+
+  ?>
 </div>
  
 
