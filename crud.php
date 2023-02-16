@@ -1,7 +1,7 @@
 <?php 
 
 //connection with database ..
-
+//INSERT INTO `note` (`sno`, `title`, `description`, `time`) VALUES (NULL, 'buy books from store', 'from lanka bhu varanasi', current_timestamp());
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -14,7 +14,26 @@ if(!$conn){
 }else{
   echo "Connection complete";
 }
+echo "<br>";
 
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+  $title = $_POST["title"];
+  $description = $_POST["description"];
+
+  //connecting with database ..
+
+$sql = "INSERT INTO `note` ( `title`, `description`) VALUES ('$title', '$description')";
+$result = mysqli_query($conn,$sql);
+
+if($result){
+  echo "data saved successfully ..";
+}else{
+  echo "Unable to save data.." .mysqli_error($conn) ;
+}
+
+
+}
 
 
 
@@ -68,7 +87,7 @@ if(!$conn){
 </nav>
 
 <div class="container my-4" >
-  <form>
+  <form action="crud.php" method="post" >
   <div class="mb-3">
     <label for="title" class="form-label">Title</label>
     <input type="text" class="form-control" id="title" name="title" aria-describedby="emailHelp">
@@ -76,7 +95,7 @@ if(!$conn){
   </div>
   <div class="mb-3">
   <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3"></textarea>
+  <textarea class="form-control" id="description" name="description" rows="3"></textarea>
 </div>
   
   <button type="submit" class="btn btn-primary">Add Note</button>
@@ -84,19 +103,38 @@ if(!$conn){
 </div>
 
 <div class="container" >
-  <?php
+  
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">S.no</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
    
-   $sql = "SELECT * FROM `notes` ";
+   $sql = "SELECT * FROM `note` ";
 
    $result = mysqli_query($conn,$sql);
+     $sno = 0;
+   while($rows = mysqli_fetch_assoc($result)){ 
+     $sno = $sno+1;
+    ?>
 
-   while($rows = mysqli_fetch_assoc($result)){
+      <tr>
+      <th scope="row"><?php echo $sno ?></th>
+      <td><?php echo $rows["title"] ?></td>
+      <td><?php echo $rows["description"] ?></td>
+      <td>Action</td>
+    </tr>
 
-    echo $rows["sno"] . " Title " .$rows["title"] . " Description " .$rows["description"];
-   }
-
-
-  ?>
+   <?php } ?> 
+    
+  </tbody>
+</table>
 </div>
  
 
