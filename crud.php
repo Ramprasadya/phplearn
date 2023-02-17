@@ -11,8 +11,6 @@ $conn = mysqli_connect($servername ,$username ,$password ,$database);
 
 if(!$conn){
   die("Unable to connect ..."  .mysqli_error());
-}else{
-  echo "Connection complete";
 }
 echo "<br>";
 
@@ -23,13 +21,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
   //connecting with database ..
 
-$sql = "INSERT INTO `note` ( `title`, `description`) VALUES ('$title', '$description')";
+$sql = "INSERT INTO `text` ( `title`, `description`) VALUES ('$title', '$description')";
 $result = mysqli_query($conn,$sql);
 
-if($result){
-  echo "data saved successfully ..";
-}else{
-  echo "Unable to save data.." .mysqli_error($conn) ;
+if(!$result){
+   echo "Unable to save data.." .mysqli_error($conn) ;
 }
 
 
@@ -46,8 +42,14 @@ if($result){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   </head>
   <body>
+
+  
+
+
+
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
@@ -116,7 +118,7 @@ if($result){
   <tbody>
     <?php
    
-   $sql = "SELECT * FROM `note` ";
+   $sql = "SELECT * FROM `text` ";
 
    $result = mysqli_query($conn,$sql);
      $sno = 0;
@@ -128,19 +130,41 @@ if($result){
       <th scope="row"><?php echo $sno ?></th>
       <td><?php echo $rows["title"] ?></td>
       <td><?php echo $rows["description"] ?></td>
-      <td>Action</td>
+      <td> <a href = "/del" >Delete</a><a href = "/update" >Update</a></td>
     </tr>
 
    <?php } ?> 
-    <a href = "/del" >Delete</a>
-    <a href = "/update" >Update</a>
+   
   </tbody>
 </table>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
  
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+ 
   </body>
 </html>
