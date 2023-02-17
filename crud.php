@@ -132,7 +132,8 @@ if($result){
     </tr>
 
    <?php } ?> 
-    
+    <a href = "/del" >Delete</a>
+    <a href = "/update" >Update</a>
   </tbody>
 </table>
 </div>
